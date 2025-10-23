@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binance Rewards Program - Claim Your $5 Gift</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        /* Binance-inspired Color Scheme */
+        :root {
+            --binance-yellow: #F0B90B;
+            --binance-dark: #0B0E11;
+            --binance-gray: #1E2329;
+            --binance-light-gray: #2B3139;
+            --binance-text: #EAECEF;
+            --binance-secondary-text: #848E9C;
+            --binance-green: #02C076;
+            --binance-red: #F6465D;
+            --binance-blue: #0170FF;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--binance-dark);
+            color: var(--binance-text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--binance-yellow);
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #f8d33a;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header - Binance Style */
+        .header {
+            background-color: var(--binance-gray);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--binance-light-gray);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-weight: 600;
+            font-size: 20px;
+            color: var(--binance-text);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--binance-text);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-left: 15px;
+            font-weight: 500;
+            color: var(--binance-secondary-text);
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .nav-item:hover {
+            color: var(--binance-text);
+        }
+
+        .nav-item.active {
+            color: var(--binance-yellow);
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+        }
+
+        .login-btn, .signup-btn {
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .login-btn {
+            background-color: transparent;
+            color: var(--binance-yellow);
+            border: 1px solid var(--binance-yellow);
+            transition: all 0.2s;
+        }
+
+        .login-btn:hover {
+            background-color: rgba(240, 185, 11, 0.1);
+        }
+
+        .signup-btn {
+            background-color: var(--binance-yellow);
+            color: var(--binance-dark);
+            margin-left: 10px;
+            transition: all 0.2s;
+        }
+
+        .signup-btn:hover {
+            background-color: #f8d33a;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background-color: var(--binance-gray);
+            padding: 15px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-nav-item {
+            display: block;
+            padding: 12px 0;
+            color: var(--binance-text);
+            border-bottom: 1px solid var(--binance-light-gray);
+        }
+
+        .mobile-auth-buttons {
+            display: flex;
+            margin-top: 15px;
+            gap: 10px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 0 40px;
+            background: linear-gradient(135deg, var(--binance-gray) 0%, var(--binance-dark) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badge {
+            background-color: rgba(2, 192, 118, 0.1);
+            color: var(--binance-green);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            color: var(--binance-secondary-text);
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .claim-btn {
+            background-color: var(--binance-yellow);
+            color: var(--binance-dark);
+            padding: 14px 28px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .claim-btn:hover {
+            background-color: #f8d33a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(240, 185, 11, 0.3);
+        }
+
+        .claim-btn i {
+            margin-left: 8px;
+            font-size: 18px;
+        }
+
+        .verification-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 25px;
+            color: var(--binance-secondary-text);
+            font-size: 14px;
+        }
+
+        .verification-badge i {
+            color: var(--binance-green);
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 40px 0;
+            background-color: var(--binance-gray);
+            text-align: center;
+        }
+
+        .stats-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--binance-yellow);
+            margin-bottom: 5px;
+        }
+
+        .stats-label {
+            color: var(--binance-secondary-text);
+            font-size: 16px;
+        }
+
+        /* Market Section */
+        .market {
+            padding: 40px 0;
+            background-color: var(--binance-dark);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .view-all {
+            color: var(--binance-yellow);
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .market-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .market-item {
+            background-color: var(--binance-gray);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s;
+        }
+
+        .market-item:hover {
+            background-color: var(--binance-light-gray);
+        }
+
+        .coin-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .coin-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        .coin-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .coin-symbol {
+            color: var(--binance-secondary-text);
+            font-size: 12px;
+        }
+
+        .coin-price {
+            text-align: right;
+        }
+
+        .price {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .price-change {
+            font-size: 12px;
+            color: var(--binance-green);
+        }
+
+        .price-change.negative {
+            color: var(--binance-red);
+        }
+
+        /* Chart Section */
+        .chart-section {
+            padding: 40px 0;
+            background-color: var(--binance-gray);
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 450px;
+            background-color: var(--binance-dark);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--binance-light-gray);
+        }
+
+        .tradingview-widget-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--binance-secondary-text);
+            flex-direction: column;
+        }
+
+        .chart-placeholder i {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: var(--binance-yellow);
+        }
+
+        .time-frames {
+            display: flex;
+            gap: 5px;
+            background: var(--binance-light-gray);
+            padding: 4px;
+            border-radius: 6px;
+        }
+
+        .time-frame {
+            padding: 6px 12px;
+            background: transparent;
+            border: none;
+            color: var(--binance-secondary-text);
+            cursor: pointer;
+            font-size: 12px;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .time-frame.active {
+            background-color: var(--binance-yellow);
+            color: var(--binance-dark);
+        }
+
+        .time-frame:hover:not(.active) {
+            background-color: rgba(240, 185, 11, 0.1);
+            color: var(--binance-yellow);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 40px 0;
+            background-color: var(--binance-dark);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .feature-card {
+            background-color: var(--binance-gray);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(240, 185, 11, 0.1);
+            border-radius: 50%;
+            color: var(--binance-yellow);
+            font-size: 20px;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            color: var(--binance-secondary-text);
+            font-size: 14px;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 40px 0;
+            background-color: var(--binance-gray);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .testimonial-card {
+            background-color: var(--binance-dark);
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: var(--binance-text);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 12px;
+            object-fit: cover;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .author-title {
+            font-size: 12px;
+            color: var(--binance-secondary-text);
+        }
+
+        .testimonial-rating {
+            color: var(--binance-yellow);
+            font-size: 14px;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--binance-gray) 0%, var(--binance-dark) 100%);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .cta-subtitle {
+            font-size: 16px;
+            color: var(--binance-secondary-text);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--binance-gray);
+            padding: 40px 0 20px;
+            border-top: 1px solid var(--binance-light-gray);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo img {
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .footer-logo-text {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .footer-desc {
+            color: var(--binance-secondary-text);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--binance-light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--binance-secondary-text);
+            transition: all 0.2s;
+        }
+
+        .social-icon:hover {
+            color: var(--binance-yellow);
+            background-color: rgba(240, 185, 11, 0.1);
+        }
+
+        .footer-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: 12px;
+        }
+
+        .footer-link a {
+            color: var(--binance-secondary-text);
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-link a:hover {
+            color: var(--binance-yellow);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--binance-light-gray);
+            padding-top: 20px;
+            text-align: center;
+            color: var(--binance-secondary-text);
+            font-size: 13px;
+        }
+
+        /* Popup */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(11, 14, 17, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 15px;
+        }
+
+        .popup-container {
+            background-color: var(--binance-gray);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 500px;
+            padding: 25px;
+            position: relative;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--binance-secondary-text);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .popup-close:hover {
+            color: var(--binance-text);
+        }
+
+        .popup-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .popup-subtitle {
+            color: var(--binance-secondary-text);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--binance-light-gray);
+            border: 1px solid var(--binance-light-gray);
+            border-radius: 4px;
+            color: var(--binance-text);
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--binance-yellow);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--binance-yellow);
+            color: var(--binance-dark);
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        .form-submit:hover {
+            background-color: #f8d33a;
+        }
+
+        .form-note {
+            font-size: 12px;
+            color: var(--binance-secondary-text);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Loading State */
+        .chart-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100%;
+            color: var(--binance-secondary-text);
+        }
+
+        .loading-spinner {
+            border: 3px solid var(--binance-light-gray);
+            border-top: 3px solid var(--binance-yellow);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav {
+                display: none;
+            }
+            
+            .header-container {
+                padding: 0 10px;
+            }
+
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        @media (min-width: 576px) {
+            .market-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                padding: 80px 0 60px;
+            }
+            
+            .hero-title {
+                font-size: 38px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .market-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .chart-container {
+                height: 500px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+            
+            .nav-item {
+                margin-left: 20px;
+                font-size: 15px;
+            }
+            
+            .login-btn, .signup-btn {
+                padding: 8px 16px;
+                font-size: 15px;
+            }
+        }
+
+        /* Animation for stats counter */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="https://bin.bnbstatic.com/static/images/common/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://bin.bnbstatic.com/static/images/common/favicon.ico" alt="Binance Logo">
+                <span class="logo-text">Binance</span>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav">
+                <a href="#" class="nav-item active">Home</a>
+                <a href="#" class="nav-item">Markets</a>
+                <a href="#" class="nav-item">Trade</a>
+                <a href="#" class="nav-item">Futures</a>
+                <a href="#" class="nav-item">Earn</a>
+                <div class="auth-buttons">
+                    <a href="https://accounts.binance.com/en/login?loginChannel=&return_to=" target="_blank" class="login-btn">Log In</a>
+                    <a href="https://accounts.binance.com/en/register?registerChannel=&return_to=" target="_blank" class="signup-btn">Sign Up</a>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#" class="mobile-nav-item">Home</a>
+            <a href="#" class="mobile-nav-item">Markets</a>
+            <a href="#" class="mobile-nav-item">Trade</a>
+            <a href="#" class="mobile-nav-item">Futures</a>
+            <a href="#" class="mobile-nav-item">Earn</a>
+            <div class="mobile-auth-buttons">
+                <a href="https://accounts.binance.com/en/login?loginChannel=&return_to=" target="_blank" class="login-btn">Log In</a>
+                <a href="https://accounts.binance.com/en/register?registerChannel=&return_to=" target="_blank" class="signup-btn">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <span class="badge fade-in">LIMITED TIME OFFER</span>
+            <h1 class="hero-title fade-in delay-1">Claim Your $5 Binance Gift</h1>
+            <p class="hero-subtitle fade-in delay-2">Join our exclusive rewards program and receive a $5 bonus in your Binance account.</p>
+            <a href="https://whoushex.top/4/9072826" target="_blank" class="claim-btn fade-in delay-3">
+                Claim Now <i class="fas fa-gift"></i>
+            </a>
+            
+            <div class="verification-badge fade-in delay-3">
+                <i class="fas fa-shield-alt"></i> Secured by Binance • SSL Encrypted
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-number" id="userCounter">272,379,223</div>
+            <div class="stats-label">USERS TRUST US</div>
+        </div>
+    </section>
+
+    <!-- Market Section -->
+    <section class="market">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Popular</h2>
+                <a href="#" class="view-all">View All 350+ Coins <i class="fas fa-chevron-right"></i></a>
+            </div>
+            
+            <div class="market-grid">
+                <div class="market-item">
+                    <div class="coin-info">
+                        <img src="https://i.postimg.cc/BtWcq39h/1.png" alt="Bitcoin" class="coin-icon">
+                        <div>
+                            <div class="coin-name">Bitcoin</div>
+                            <div class="coin-symbol">BTC</div>
+                        </div>
+                    </div>
+                    <div class="coin-price">
+                        <div class="price">$98,859.99</div>
+                        <div class="price-change">+2.60%</div>
+                    </div>
+                </div>
+                
+                <div class="market-item">
+                    <div class="coin-info">
+                        <img src="https://i.postimg.cc/1X02hJbN/3a8c9fe6-2a76-4ace-aa07-415d994de6f0.png" alt="Ethereum" class="coin-icon">
+                        <div>
+                            <div class="coin-name">Ethereum</div>
+                            <div class="coin-symbol">ETH</div>
+                        </div>
+                    </div>
+                    <div class="coin-price">
+                        <div class="price">$1,900.83</div>
+                        <div class="price-change">+4.05%</div>
+                    </div>
+                </div>
+                
+                <div class="market-item">
+                    <div class="coin-info">
+                        <img src="https://i.postimg.cc/nzJ1bpx0/94863af2-c980-42cf-a139-7b9f462a36c2.png" alt="BNB" class="coin-icon">
+                        <div>
+                            <div class="coin-name">BNB</div>
+                            <div class="coin-symbol">BNB</div>
+                        </div>
+                    </div>
+                    <div class="coin-price">
+                        <div class="price">$609.31</div>
+                        <div class="price-change">+0.83%</div>
+                    </div>
+                </div>
+                
+                <div class="market-item">
+                    <div class="coin-info">
+                        <img src="https://i.postimg.cc/SKrnRh8Z/4766a9cc-8545-4c2b-bfa4-cad2be91c135.png" alt="XRP" class="coin-icon">
+                        <div>
+                            <div class="coin-name">XRP</div>
+                            <div class="coin-symbol">XRP</div>
+                        </div>
+                    </div>
+                    <div class="coin-price">
+                        <div class="price">$2.18</div>
+                        <div class="price-change">+1.88%</div>
+                    </div>
+                </div>
+                
+                <div class="market-item">
+                    <div class="coin-info">
+                        <img src="https://i.postimg.cc/P5DZt92c/b2f0c70f-4fb2-4472-9fe7-480ad1592421.png" alt="Solana" class="coin-icon">
+                        <div>
+                            <div class="coin-name">Solana</div>
+                            <div class="coin-symbol">SOL</div>
+                        </div>
+                    </div>
+                    <div class="coin-price">
+                        <div class="price">$150.45</div>
+                        <div class="price-change">+3.33%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chart Section -->
+    <section class="chart-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">BTC/USDT Chart</h2>
+                <div class="time-frames">
+                    <button class="time-frame active" data-timeframe="60">1H</button>
+                    <button class="time-frame" data-timeframe="D">1D</button>
+                    <button class="time-frame" data-timeframe="W">1W</button>
+                    <button class="time-frame" data-timeframe="M">1M</button>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="tradingview-widget-container">
+                    <div id="tradingview_chart" style="height: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Participate?</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Instant Reward</h3>
+                    <p class="feature-desc">Receive your $5 gift immediately after verification. No waiting period.</p>
+                </div>
+                <div class="feature-card fade-in delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Secure & Verified</h3>
+                    <p class="feature-desc">Official Binance program with end-to-end encryption for your security.</p>
+                </div>
+                <div class="feature-card fade-in delay-3">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Community Benefits</h3>
+                    <p class="feature-desc">Join over 1 million users who have already claimed their rewards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Users Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I received my $5 gift within minutes of submitting my address. This is legit!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="testimonial-avatar">
+                        <div class="author-info">
+                            <div class="author-name">Michael Chen</div>
+                            <div class="author-title">Crypto Trader</div>
+                        </div>
+                        <div class="testimonial-rating">★★★★★</div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Easy process and the reward was credited to my Binance account immediately. Highly recommend!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson" class="testimonial-avatar">
+                        <div class="author-info">
+                            <div class="author-name">Sarah Johnson</div>
+                            <div class="author-title">Blockchain Enthusiast</div>
+                        </div>
+                        <div class="testimonial-rating">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta-title">Ready to Claim Your Gift?</h2>
+            <p class="cta-subtitle">Don't miss out on this limited-time opportunity to get free crypto in your Binance account.</p>
+            <a href="https://whoushex.top/4/9072826" target="_blank" class="claim-btn">
+                Claim Your $5 Now <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="https://bin.bnbstatic.com/static/images/common/favicon.ico" alt="Binance Logo">
+                        <span class="footer-logo-text">Binance</span>
+                    </div>
+                    <p class="footer-desc">The world's leading cryptocurrency exchange. Trade Bitcoin, Ethereum, and 300+ other cryptocurrencies.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Products</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Exchange</a></li>
+                        <li class="footer-link"><a href="#">Academy</a></li>
+                        <li class="footer-link"><a href="#">Community</a></li>
+                        <li class="footer-link"><a href="#">Blog</a></li>
+                        <li class="footer-link"><a href="#">NFT</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Services</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Downloads</a></li>
+                        <li class="footer-link"><a href="#">Desktop App</a></li>
+                        <li class="footer-link"><a href="#">Buy Crypto</a></li>
+                        <li class="footer-link"><a href="#">Institutional</a></li>
+                        <li class="footer-link"><a href="#">OTC Trading</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Support</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Request Form</a></li>
+                        <li class="footer-link"><a href="#">Live Chat</a></li>
+                        <li class="footer-link"><a href="#">FAQ</a></li>
+                        <li class="footer-link"><a href="#">Fees</a></li>
+                        <li class="footer-link"><a href="#">Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Binance. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- TradingView Script -->
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            this.innerHTML = mobileMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Counter Animation
+        function animateCounter(element, target, duration) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    clearInterval(timer);
+                    current = target;
+                }
+                element.textContent = Math.floor(current).toLocaleString();
+            }, 16);
+        }
+
+        // Initialize counter when in viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(document.getElementById('userCounter'), 272379223, 2000);
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.stats'));
+
+        // Fade in elements on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        fadeElements.forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            fadeObserver.observe(el);
+        });
+
+        // TradingView Chart Implementation
+        let currentChart = null;
+
+        function initializeTradingViewChart(timeframe = '60') {
+            if (currentChart) {
+                // Remove existing chart
+                try {
+                    currentChart.remove();
+                } catch (e) {
+                    console.log('Clearing previous chart...');
+                }
+            }
+
+            // Create new chart
+            currentChart = new TradingView.widget({
+                "autosize": true,
+                "symbol": "BINANCE:BTCUSDT",
+                "interval": timeframe,
+                "timezone": "Etc/UTC",
+                "theme": "dark",
+                "style": "1",
+                "locale": "en",
+                "toolbar_bg": "#0B0E11",
+                "enable_publishing": false,
+                "allow_symbol_change": false,
+                "hide_top_toolbar": false,
+                "hide_legend": false,
+                "save_image": false,
+                "container_id": "tradingview_chart",
+                "studies": [
+                    "RSI@tv-basicstudies",
+                    "Volume@tv-basicstudies"
+                ],
+                "overrides": {
+                    "paneProperties.background": "#0B0E11",
+                    "paneProperties.vertGridProperties.color": "#1E2329",
+                    "paneProperties.horzGridProperties.color": "#1E2329",
+                    "symbolWatermarkProperties.transparency": 90,
+                    "scalesProperties.textColor" : "#848E9C",
+                    "mainSeriesProperties.candleStyle.upColor": "#02C076",
+                    "mainSeriesProperties.candleStyle.downColor": "#F6465D",
+                    "mainSeriesProperties.candleStyle.borderUpColor": "#02C076",
+                    "mainSeriesProperties.candleStyle.borderDownColor": "#F6465D",
+                    "mainSeriesProperties.candleStyle.wickUpColor": "#02C076",
+                    "mainSeriesProperties.candleStyle.wickDownColor": "#F6465D"
+                },
+                "studies_overrides": {
+                    "rsi.display": "line",
+                    "rsi.linecolor": "#F0B90B",
+                    "volume.volume.color.0": "#F6465D",
+                    "volume.volume.color.1": "#02C076",
+                    "volume.volume.transparency": 70
+                }
+            });
+        }
+
+        // Time frame selection with TradingView integration
+        const timeFrames = document.querySelectorAll('.time-frame');
+        
+        timeFrames.forEach(frame => {
+            frame.addEventListener('click', function() {
+                timeFrames.forEach(f => f.classList.remove('active'));
+                this.classList.add('active');
+                
+                const timeframe = this.getAttribute('data-timeframe');
+                initializeTradingViewChart(timeframe);
+            });
+        });
+
+        // Initialize chart on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait a bit for the page to load completely
+            setTimeout(() => {
+                initializeTradingViewChart();
+            }, 1000);
+        });
+
+        // Handle window resize for chart
+        window.addEventListener('resize', function() {
+            if (currentChart) {
+                // Reinitialize chart on resize for proper sizing
+                setTimeout(() => {
+                    const activeTimeframe = document.querySelector('.time-frame.active').getAttribute('data-timeframe');
+                    initializeTradingViewChart(activeTimeframe);
+                }, 300);
+            }
+        });
+    </script>
+</body>
+</html>
